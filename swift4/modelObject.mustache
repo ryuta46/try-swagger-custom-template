@@ -1,5 +1,5 @@
 
-struct {{classname}}: Codable {
+public struct {{classname}}: Codable {
 
 {{#allVars}}
 {{#isEnum}}
@@ -9,11 +9,11 @@ struct {{classname}}: Codable {
 {{#allVars}}
 {{#isEnum}}
     {{#description}}/** {{description}} */
-    {{/description}}var {{name}}: {{{datatypeWithEnum}}}{{^required}}?{{/required}}{{#defaultValue}} = {{{defaultValue}}}{{/defaultValue}}
+    {{/description}}public var {{name}}: {{{datatypeWithEnum}}}{{^required}}?{{/required}}{{#defaultValue}} = {{{defaultValue}}}{{/defaultValue}}
 {{/isEnum}}
 {{^isEnum}}
     {{#description}}/** {{description}} */
-    {{/description}}var {{name}}: {{{datatype}}}{{^required}}?{{/required}}{{#defaultValue}} = {{{defaultValue}}}{{/defaultValue}}{{#objcCompatible}}{{#vendorExtensions.x-swift-optional-scalar}}
+    {{/description}}public var {{name}}: {{{datatype}}}{{^required}}?{{/required}}{{#defaultValue}} = {{{defaultValue}}}{{/defaultValue}}{{#objcCompatible}}{{#vendorExtensions.x-swift-optional-scalar}}
     var {{name}}Num: NSNumber? {
         get {
             return {{name}}.map({ return NSNumber(value: $0) })
@@ -23,7 +23,7 @@ struct {{classname}}: Codable {
 {{/allVars}}
 
 {{#hasVars}}
-    init({{#allVars}}{{name}}: {{{datatypeWithEnum}}}{{^required}}?{{/required}}{{#hasMore}}, {{/hasMore}}{{/allVars}}) {
+    public init({{#allVars}}{{name}}: {{{datatypeWithEnum}}}{{^required}}?{{/required}}{{#hasMore}}, {{/hasMore}}{{/allVars}}) {
         {{#allVars}}
         self.{{name}} = {{name}}
         {{/allVars}}

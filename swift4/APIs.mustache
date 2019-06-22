@@ -6,13 +6,13 @@
 
 import Foundation
 
-class {{projectName}}API {
+public class {{projectName}}API {
     let basePath: String
     let credential: URLCredential?
     let customHeaders: [String:String]
     let requestBuilderFactory: RequestBuilderFactory = AlamofireRequestBuilderFactory()
 
-    init(basePath: String = "{{{basePath}}}", credential: URLCredential? = nil, customHeaders: [String:String] = [:]) {
+    public init(basePath: String = "{{{basePath}}}", credential: URLCredential? = nil, customHeaders: [String:String] = [:]) {
         self.basePath = basePath
         self.credential = credential
         self.customHeaders = customHeaders
