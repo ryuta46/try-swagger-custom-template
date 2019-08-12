@@ -1,6 +1,7 @@
-@Grab('io.swagger:swagger-codegen-cli:2.4.2')
-import io.swagger.codegen.*;
-import io.swagger.codegen.languages.*;
+@Grab('org.openapitools:openapi-generator-cli:4.1.0')
+import org.openapitools.codegen.*;
+import org.openapitools.codegen.languages.*;
+import io.swagger.v3.oas.models.media.ComposedSchema;
 
 class CodableDictionarySwift4 extends Swift4Codegen {
 
@@ -12,13 +13,19 @@ class CodableDictionarySwift4 extends Swift4Codegen {
     this.typeMapping["object"] = "CodableDictionary"
   }
 
+
   @Override
   public void processOpts() {
     super.processOpts();
     this.supportingFiles.add(new SupportingFile("CodableDictionary.mustache", sourceFolder, "CodableDictionary.swift"));    
   }
+  
+  @Override
+  public String toAnyOfName(List<String> names, ComposedSchema composedSchema) {
+     return "CodableDictionary";
+  }
 
   public static main(String[] args) {
-    SwaggerCodegen.main(args)
+    OpenAPIGenerator.main(args)
   }
 }
